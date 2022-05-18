@@ -15,6 +15,10 @@
 		963C26EE2834E0C700AA8DDE /* Koinz_TaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963C26ED2834E0C700AA8DDE /* Koinz_TaskTests.swift */; };
 		963C26F82834E0C700AA8DDE /* Koinz_TaskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963C26F72834E0C700AA8DDE /* Koinz_TaskUITests.swift */; };
 		963C26FA2834E0C700AA8DDE /* Koinz_TaskUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963C26F92834E0C700AA8DDE /* Koinz_TaskUITestsLaunchTests.swift */; };
+		963C270C2834E1C300AA8DDE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963C270A2834E1C300AA8DDE /* MainViewController.swift */; };
+		963C270D2834E1C300AA8DDE /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 963C270B2834E1C300AA8DDE /* MainViewController.xib */; };
+		963C27122834E26B00AA8DDE /* PhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963C27102834E26B00AA8DDE /* PhotoTableViewCell.swift */; };
+		963C27132834E26B00AA8DDE /* PhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 963C27112834E26B00AA8DDE /* PhotoTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +51,10 @@
 		963C26F32834E0C700AA8DDE /* Koinz-TaskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Koinz-TaskUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		963C26F72834E0C700AA8DDE /* Koinz_TaskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koinz_TaskUITests.swift; sourceTree = "<group>"; };
 		963C26F92834E0C700AA8DDE /* Koinz_TaskUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koinz_TaskUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		963C270A2834E1C300AA8DDE /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		963C270B2834E1C300AA8DDE /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		963C27102834E26B00AA8DDE /* PhotoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCell.swift; sourceTree = "<group>"; };
+		963C27112834E26B00AA8DDE /* PhotoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +105,7 @@
 		963C26D52834E0C600AA8DDE /* Koinz-Task */ = {
 			isa = PBXGroup;
 			children = (
+				963C27062834E19100AA8DDE /* Modules */,
 				963C26D62834E0C600AA8DDE /* AppDelegate.swift */,
 				963C26DA2834E0C600AA8DDE /* ViewController.swift */,
 				963C26DC2834E0C600AA8DDE /* Main.storyboard */,
@@ -122,6 +131,57 @@
 				963C26F92834E0C700AA8DDE /* Koinz_TaskUITestsLaunchTests.swift */,
 			);
 			path = "Koinz-TaskUITests";
+			sourceTree = "<group>";
+		};
+		963C27062834E19100AA8DDE /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				963C27072834E19800AA8DDE /* Main */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		963C27072834E19800AA8DDE /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				963C27082834E1A000AA8DDE /* View */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		963C27082834E1A000AA8DDE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				963C270E2834E23400AA8DDE /* cells */,
+				963C27092834E1A900AA8DDE /* vc */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		963C27092834E1A900AA8DDE /* vc */ = {
+			isa = PBXGroup;
+			children = (
+				963C270A2834E1C300AA8DDE /* MainViewController.swift */,
+				963C270B2834E1C300AA8DDE /* MainViewController.xib */,
+			);
+			path = vc;
+			sourceTree = "<group>";
+		};
+		963C270E2834E23400AA8DDE /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				963C270F2834E23900AA8DDE /* PhotoTableViewCell */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
+		963C270F2834E23900AA8DDE /* PhotoTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				963C27102834E26B00AA8DDE /* PhotoTableViewCell.swift */,
+				963C27112834E26B00AA8DDE /* PhotoTableViewCell.xib */,
+			);
+			path = PhotoTableViewCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,7 +290,9 @@
 			files = (
 				963C26E32834E0C700AA8DDE /* LaunchScreen.storyboard in Resources */,
 				963C26E02834E0C700AA8DDE /* Assets.xcassets in Resources */,
+				963C27132834E26B00AA8DDE /* PhotoTableViewCell.xib in Resources */,
 				963C26DE2834E0C600AA8DDE /* Main.storyboard in Resources */,
+				963C270D2834E1C300AA8DDE /* MainViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +317,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				963C27122834E26B00AA8DDE /* PhotoTableViewCell.swift in Sources */,
+				963C270C2834E1C300AA8DDE /* MainViewController.swift in Sources */,
 				963C26DB2834E0C600AA8DDE /* ViewController.swift in Sources */,
 				963C26D72834E0C600AA8DDE /* AppDelegate.swift in Sources */,
 			);

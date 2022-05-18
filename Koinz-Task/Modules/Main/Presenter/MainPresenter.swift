@@ -10,6 +10,7 @@ protocol MainPresenterProtocol {
     var numberOfItems: Int {get}
     func viewDidLoad()
     func configure(cell: PhotosTableViewCellProtocol, for row: Int)
+    func didSelect(at index: Int)
 }
 
 class MainPresenter {
@@ -35,6 +36,13 @@ extension MainPresenter: MainPresenterProtocol {
     func configure(cell: PhotosTableViewCellProtocol, for row: Int) {
         guard let photo = photosResponse?.photo[row] else {return}
         cell.display(photo: .init(photo: photo))
+    }
+    
+    func didSelect(at index: Int) {
+        guard let photo = photosResponse?.photo[index] else {return}
+        let urlString = PhotoTableViewCellViewModel(photo: photo).url
+        guard let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { return  }
+        view.presentImage(with: url)
     }
 }
 

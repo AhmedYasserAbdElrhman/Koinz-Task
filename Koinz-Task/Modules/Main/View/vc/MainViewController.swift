@@ -8,6 +8,7 @@
 import UIKit
 protocol MainViewProtocol: NSObjectProtocol {
     func reloadTableView()
+    func presentImage(with url: URL)
 }
 class MainViewController: UIViewController {
 
@@ -53,11 +54,26 @@ extension MainViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return (view.frame.size.height / 4) - 40
     }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.didSelect(at: indexPath.row)
+    }
 }
 
 extension MainViewController: MainViewProtocol {
     func reloadTableView() {
         tableView.reloadData()
+    }
+    
+    
+    func presentImage(with url: URL) {
+        let imageView = PanZoomImageView(url: url)
+        let vc =  ShowPhotoViewController(imageView: imageView)
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .overFullScreen
+        present(nav, animated: true)
+
     }
 }
 

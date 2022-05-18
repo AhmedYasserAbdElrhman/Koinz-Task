@@ -24,7 +24,7 @@ extension URLRequestConvertible {
     
     
     func asURLRequest() throws -> URLRequest {
-        let stringURL = (FlickrURL.APIURL + path).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let stringURL = (Constants.baseURL + path).addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         var urlRequest = URLRequest(url: URL(string: stringURL)!)
         
         urlRequest.httpMethod = method.rawValue

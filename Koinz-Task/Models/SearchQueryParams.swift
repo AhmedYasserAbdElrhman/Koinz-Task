@@ -10,7 +10,7 @@ import Foundation
 struct SearchQueryParams {
     typealias Keys = FlickrAPIKeys
     typealias Values = FlickrAPIValues
-    var page = 1
+    var page: Int
     var text = "Color"
     func getBody() -> [String: Any] {
         return [ Keys.Page: page,

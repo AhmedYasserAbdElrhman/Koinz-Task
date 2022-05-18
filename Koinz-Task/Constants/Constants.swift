@@ -8,7 +8,7 @@
 import Foundation
 
 struct Constants {
-    static let baseURL = "https://www.flickr.com"
+    static let baseURL = "https://www.flickr.com/"
 }
 
 struct FlickrAPIKeys {

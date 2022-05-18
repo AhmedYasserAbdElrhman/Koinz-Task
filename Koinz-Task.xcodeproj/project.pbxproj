@@ -34,6 +34,8 @@
 		963C272D283503B600AA8DDE /* PhotoTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963C272C283503B600AA8DDE /* PhotoTableViewCellViewModel.swift */; };
 		963C273028351DB200AA8DDE /* PanZoomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963C272F28351DB200AA8DDE /* PanZoomImageView.swift */; };
 		963C273328351F2B00AA8DDE /* ShowPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963C273228351F2B00AA8DDE /* ShowPhotoViewController.swift */; };
+		963C2736283523D200AA8DDE /* PageablePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963C2735283523D200AA8DDE /* PageablePresenter.swift */; };
+		963C2738283523F800AA8DDE /* PageableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963C2737283523F800AA8DDE /* PageableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +87,8 @@
 		963C272C283503B600AA8DDE /* PhotoTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		963C272F28351DB200AA8DDE /* PanZoomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanZoomImageView.swift; sourceTree = "<group>"; };
 		963C273228351F2B00AA8DDE /* ShowPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowPhotoViewController.swift; sourceTree = "<group>"; };
+		963C2735283523D200AA8DDE /* PageablePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageablePresenter.swift; sourceTree = "<group>"; };
+		963C2737283523F800AA8DDE /* PageableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageableView.swift; sourceTree = "<group>"; };
 		CBBF7BEBDCBAD17E23D25CF2 /* Pods_Koinz_TaskTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Koinz_TaskTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9C51500697AF14D6D286EEF /* Pods-Koinz-Task.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Koinz-Task.release.xcconfig"; path = "Target Support Files/Pods-Koinz-Task/Pods-Koinz-Task.release.xcconfig"; sourceTree = "<group>"; };
 		E786B205EE8EB2ABC50278F8 /* Pods-Koinz-Task-Koinz-TaskUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Koinz-Task-Koinz-TaskUITests.debug.xcconfig"; path = "Target Support Files/Pods-Koinz-Task-Koinz-TaskUITests/Pods-Koinz-Task-Koinz-TaskUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 		963C26D52834E0C600AA8DDE /* Koinz-Task */ = {
 			isa = PBXGroup;
 			children = (
+				963C27342835233A00AA8DDE /* Helpers */,
 				963C27252834F73100AA8DDE /* Configurator */,
 				963C271D2834E94F00AA8DDE /* Models */,
 				963C271A2834E4E200AA8DDE /* Constants */,
@@ -304,6 +309,15 @@
 				963C273228351F2B00AA8DDE /* ShowPhotoViewController.swift */,
 			);
 			path = ShowPhoto;
+			sourceTree = "<group>";
+		};
+		963C27342835233A00AA8DDE /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				963C2737283523F800AA8DDE /* PageableView.swift */,
+				963C2735283523D200AA8DDE /* PageablePresenter.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		D36CD8BB73D13CF1FA520B6C /* Frameworks */ = {
@@ -564,10 +578,12 @@
 				963C270C2834E1C300AA8DDE /* MainViewController.swift in Sources */,
 				963C271F2834EAD100AA8DDE /* SearchQueryParams.swift in Sources */,
 				963C27192834E45000AA8DDE /* URLRequestConvertibleEx.swift in Sources */,
+				963C2738283523F800AA8DDE /* PageableView.swift in Sources */,
 				963C272B2835011D00AA8DDE /* PhotosSearchModel.swift in Sources */,
 				963C27242834F04600AA8DDE /* MainPresenter.swift in Sources */,
 				963C27172834E3CB00AA8DDE /* NetworkRoute.swift in Sources */,
 				963C272D283503B600AA8DDE /* PhotoTableViewCellViewModel.swift in Sources */,
+				963C2736283523D200AA8DDE /* PageablePresenter.swift in Sources */,
 				963C271C2834E4EF00AA8DDE /* Constants.swift in Sources */,
 				963C273328351F2B00AA8DDE /* ShowPhotoViewController.swift in Sources */,
 				963C26DB2834E0C600AA8DDE /* ViewController.swift in Sources */,

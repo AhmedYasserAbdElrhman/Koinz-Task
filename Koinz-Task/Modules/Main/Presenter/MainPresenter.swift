@@ -6,7 +6,7 @@
 //
 
 import Foundation
-protocol MainPresenterProtocol {
+protocol MainPresenterProtocol: PageablePresenter {
     var numberOfItems: Int {get}
     func viewDidLoad()
     func configure(cell: PhotosTableViewCellProtocol, for row: Int)
@@ -18,6 +18,7 @@ class MainPresenter {
     weak var view: MainViewProtocol!
     var manager: NetworkManagerProtocol!
     private var photosResponse: Photos?
+    private var isPresenterFetching = false
     init(view: MainViewProtocol, manager: NetworkManagerProtocol) {
         self.view = view
         self.manager = manager
@@ -25,6 +26,7 @@ class MainPresenter {
 }
 
 extension MainPresenter: MainPresenterProtocol {
+    
     var numberOfItems: Int {
         return photosResponse?.photo.count ?? 0
     }
@@ -46,16 +48,47 @@ extension MainPresenter: MainPresenterProtocol {
     }
 }
 
+extension MainPresenter {
+    
+    var currentPage: Int {
+        return photosResponse?.page ?? 0
+    }
+    
+    var lastPage: Int {
+        return photosResponse?.pages ?? 0
+    }
+    
+    var isFetching: Bool {
+        get {
+            isPresenterFetching
+        }
+        set {
+            isPresenterFetching = newValue
+        }
+    }
+    
+    func paginate() {
+        getPhotos(page: currentPage + 1)
+    }
+
+}
 
 extension MainPresenter {
     private func getPhotos(page: Int) {
+        isPresenterFetching = true
         manager.search(page: page) { [weak self] result in
             guard let self = self else {return}
-            
+            self.isPresenterFetching = false
             switch result {
                 
             case .success(let model):
-                self.photosResponse = model
+                if page == 1 {
+                    self.photosResponse = model
+                } else {
+                    self.photosResponse?.page = model.page
+                    self.photosResponse?.pages = model.pages
+                    self.photosResponse?.photo.append(contentsOf: model.photo)
+                }
                 self.view.reloadTableView()
             case .failure(let error):
                 print(error)

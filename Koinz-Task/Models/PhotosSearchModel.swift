@@ -15,8 +15,9 @@ struct PhotosSearchModel: Codable {
 
 // MARK: - Photos
 struct Photos: Codable {
-    let page, pages, perpage, total: Int
-    let photo: [Photo]
+    let perpage, total: Int
+    var page, pages: Int
+    var photo: [Photo]
 }
 
 // MARK: - Photo

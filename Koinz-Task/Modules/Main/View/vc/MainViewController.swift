@@ -77,3 +77,23 @@ extension MainViewController: MainViewProtocol {
     }
 }
 
+extension MainViewController: PageableView {
+    var scroll: UIScrollView {
+        return tableView
+    }
+    
+    var pageablePresenter: PageablePresenter {
+        return presenter
+    }
+    
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        didEndScrolling()
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        didEndScrolling()
+    }
+
+    
+}

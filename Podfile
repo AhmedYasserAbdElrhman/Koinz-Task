@@ -16,4 +16,5 @@ target 'Koinz-Task' do
     # Pods for testing
   end
   pod 'Alamofire'
+  pod 'Kingfisher'
 end

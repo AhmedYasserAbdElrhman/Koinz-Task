@@ -7,7 +7,7 @@
 
 import UIKit
 protocol MainViewProtocol: NSObjectProtocol {
-    
+    func reloadTableView()
 }
 class MainViewController: UIViewController {
 
@@ -22,6 +22,14 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         
         presenter.viewDidLoad()
+        setupTableView()
+    }
+    
+    
+    // MARK: - Functions
+    private func setupTableView() {
+        let nib = UINib(nibName: "PhotoTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "PhotoTableViewCell")
     }
 
 }
@@ -29,11 +37,12 @@ class MainViewController: UIViewController {
 
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return presenter.numberOfItems
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoTableViewCell") as? PhotoTableViewCell else {return UITableViewCell()}
+        presenter.configure(cell: cell, for: indexPath.row)
         return cell
     }
     
@@ -47,6 +56,8 @@ extension MainViewController: UITableViewDelegate {
 }
 
 extension MainViewController: MainViewProtocol {
-    
+    func reloadTableView() {
+        tableView.reloadData()
+    }
 }
 

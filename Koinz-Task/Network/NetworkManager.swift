@@ -8,23 +8,29 @@
 import Foundation
 import Alamofire
 protocol NetworkManagerProtocol {
-    func search(page: Int, completion: @escaping () -> Void)
+    func search(page: Int, completion: @escaping (Result<Photos, Error>) -> Void)
 }
 class NetworkManager {
     var searchCalled = false
 }
 
 extension NetworkManager: NetworkManagerProtocol {
-    func search(page: Int, completion: @escaping () -> Void) {
-        AF.request(NetworkRoute.search(page: page)) .responseString { [weak self] response in
+    func search(page: Int, completion: @escaping (Result<Photos, Error>) -> Void) {
+        AF.request(NetworkRoute.search(page: page)) .responseData { [weak self] response in
             guard let self = self else {return}
             self.searchCalled = true
-            completion()
             switch response.result {
                 
-            case .success(let string):
-                print(string)
+            case .success(let value):
+                do {
+                    let model = try JSONDecoder().decode(PhotosSearchModel.self, from: value)
+                    completion(.success(model.photos))
+                } catch {
+                    completion(.failure(error))
+                }
+                
             case .failure(let error):
+                completion(.failure(error))
                 print(error)
             }
         }

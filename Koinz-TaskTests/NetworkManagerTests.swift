@@ -33,7 +33,7 @@ class NetworkManagerTests: XCTestCase {
         let defaultTimeOut: TimeInterval = 60
         let expectation = self.expectation(description: "Search Request Expectation")
         // Act
-        sut.search(page: page) {
+        sut.search(page: page) { _ in
             expectation.fulfill()
         }
         

@@ -6,9 +6,15 @@
 //
 
 import UIKit
+import Kingfisher
+protocol PhotosTableViewCellProtocol {
+    func display(photo: PhotoTableViewCellViewModel)
+}
 
 class PhotoTableViewCell: UITableViewCell {
 
+    // MARK: - IBOutlets
+    @IBOutlet private weak var photoImageView: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,4 +26,12 @@ class PhotoTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+}
+
+
+extension PhotoTableViewCell: PhotosTableViewCellProtocol {
+    func display(photo: PhotoTableViewCellViewModel) {
+        guard let url = URL(string: photo.url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else {return}
+        self.photoImageView.kf.setImage(with: url)
+    }
 }

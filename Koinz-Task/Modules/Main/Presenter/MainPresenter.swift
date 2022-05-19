@@ -10,6 +10,7 @@ protocol MainPresenterProtocol: PageablePresenter {
     var numberOfItems: Int {get}
     func viewDidLoad()
     func configure(cell: PhotosTableViewCellProtocol, for row: Int)
+    func configure(cell: AdBannerTableViewCellProtocol)
     func didSelect(at index: Int)
 }
 
@@ -28,7 +29,8 @@ class MainPresenter {
 extension MainPresenter: MainPresenterProtocol {
     
     var numberOfItems: Int {
-        return photosResponse?.photo.count ?? 0
+        let count = photosResponse?.photo.count ?? 0
+        return count + count / 5
     }
     
     func viewDidLoad() {
@@ -38,6 +40,10 @@ extension MainPresenter: MainPresenterProtocol {
     func configure(cell: PhotosTableViewCellProtocol, for row: Int) {
         guard let photo = photosResponse?.photo[row] else {return}
         cell.display(photo: .init(photo: photo))
+    }
+    
+    func configure(cell: AdBannerTableViewCellProtocol) {
+        cell.displayBanner()
     }
     
     func didSelect(at index: Int) {

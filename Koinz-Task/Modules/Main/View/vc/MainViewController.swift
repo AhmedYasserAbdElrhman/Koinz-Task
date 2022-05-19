@@ -9,6 +9,7 @@ import UIKit
 protocol MainViewProtocol: NSObjectProtocol {
     func reloadTableView()
     func presentImage(with url: URL)
+    func presentBanner()
 }
 class MainViewController: UIViewController {
 
@@ -43,7 +44,12 @@ extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PhotoTableViewCell") as? PhotoTableViewCell else {return UITableViewCell()}
-        presenter.configure(cell: cell, for: indexPath.row)
+        if indexPath.row % 6 == 5 {
+            presenter.configure(cell: cell)
+        } else {
+            let index = indexPath.row - (indexPath.row / 6)
+            presenter.configure(cell: cell, for: index)
+        }
         return cell
     }
     
@@ -57,7 +63,12 @@ extension MainViewController: UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter.didSelect(at: indexPath.row)
+        if indexPath.row % 6 == 5 {
+            presentBanner()
+        } else {
+            let index = indexPath.row - (indexPath.row / 6)
+            presenter.didSelect(at: index)
+        }
     }
 }
 
@@ -74,6 +85,15 @@ extension MainViewController: MainViewProtocol {
         nav.modalPresentationStyle = .overFullScreen
         present(nav, animated: true)
 
+    }
+    
+    
+    func presentBanner() {
+        let imageView = PanZoomImageView(image: .init())
+        let vc =  ShowPhotoViewController(imageView: imageView)
+        let nav = UINavigationController(rootViewController: vc)
+        nav.modalPresentationStyle = .overFullScreen
+        present(nav, animated: true)
     }
 }
 

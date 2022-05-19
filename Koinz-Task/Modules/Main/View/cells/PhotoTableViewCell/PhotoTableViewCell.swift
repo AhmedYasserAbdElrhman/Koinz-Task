@@ -11,6 +11,10 @@ protocol PhotosTableViewCellProtocol {
     func display(photo: PhotoTableViewCellViewModel)
 }
 
+protocol AdBannerTableViewCellProtocol {
+    func displayBanner()
+}
+
 class PhotoTableViewCell: UITableViewCell {
 
     // MARK: - IBOutlets
@@ -33,5 +37,11 @@ extension PhotoTableViewCell: PhotosTableViewCellProtocol {
     func display(photo: PhotoTableViewCellViewModel) {
         guard let url = URL(string: photo.url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else {return}
         self.photoImageView.kf.setImage(with: url)
+    }
+}
+
+extension PhotoTableViewCell: AdBannerTableViewCellProtocol {
+    func displayBanner() {
+        self.photoImageView.image = UIImage()
     }
 }

@@ -12,11 +12,25 @@ protocol NetworkManagerProtocol {
 }
 class NetworkManager {
     var searchCalled = false
+    let sessionManager: Session = {
+        let configuration = URLSessionConfiguration.af.default
+        configuration.requestCachePolicy = .returnCacheDataElseLoad
+        let responseCacher = ResponseCacher(behavior: .modify { _, response in
+          let userInfo = ["date": Date()]
+          return CachedURLResponse(
+            response: response.response,
+            data: response.data,
+            userInfo: userInfo,
+            storagePolicy: .allowed)
+        })
+        return Session(configuration: configuration, cachedResponseHandler: responseCacher)
+    }()
+    
 }
 
 extension NetworkManager: NetworkManagerProtocol {
     func search(page: Int, completion: @escaping (Result<Photos, Error>) -> Void) {
-        AF.request(NetworkRoute.search(page: page)) .responseData { [weak self] response in
+        sessionManager.request(NetworkRoute.search(page: page)) .responseData { [weak self] response in
             guard let self = self else {return}
             self.searchCalled = true
             switch response.result {
